@@ -13,11 +13,11 @@ Gerenciador de tarefas via CLI. Com ele, você pode adicionar uma tarefa, mudar 
 
 # Como executar
 
-git clone ...
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python main.py
+- git clone ...
+- python -m venv venv
+- source venv/bin/activate
+- pip install -r requirements.txt
+- python main.py
 
 # Como executar os testes
 
