@@ -1,6 +1,6 @@
 import pytest
 
-from src.gerenciador import GerenciadorDeTarefas
+from src.task_manager.core import GerenciadorDeTarefas
 
 def test_adicionar_uma_tarefa_deve_aumentar_a_lista():
     gerenciador_teste = GerenciadorDeTarefas("data/test_tasks.json")

@@ -1,9 +1,7 @@
-from gerenciador import GerenciadorDeTarefas
+from src.task_manager.cli import run
 
 def main():
-    local = "data/data.json"
-    app = GerenciadorDeTarefas(local)
-    app.executar()
+    run()
 
 if __name__ == "__main__":
     main()
