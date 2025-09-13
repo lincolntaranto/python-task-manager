@@ -49,3 +49,9 @@ def test_carregar_tarefa():
     sucesso = gerenciador_teste.carregar_tarefas()
 
     assert sucesso == []
+
+def test_adicionar_tarefa_da_api():
+    gerenciador_teste = GerenciadorDeTarefas("data/test_carregamento.json")
+    sucesso = gerenciador_teste.adicionar_tarefa_da_api()
+
+    assert type(sucesso) == str

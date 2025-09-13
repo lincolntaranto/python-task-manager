@@ -1,4 +1,6 @@
 import json
+import random
+import requests
 
 class GerenciadorDeTarefas:
     def __init__(self, nome_arquivo):
@@ -102,13 +104,39 @@ class GerenciadorDeTarefas:
             print("Arquivo não encontrado! Iniciando uma nova lista vazia.")
             return []
     
+    def adicionar_tarefa_da_api(self):
+
+        """Gera um número aleatório, concatena com a URL da API, faz a requisição, verifica se a requisição foi bem sucedida, converte o 
+        conteúdo para um dicionário python e então retorna o title.
+
+        Args:
+            None
+
+        Returns:
+            str: Retorna o título da tarefa obtido do dicionário retornado pela API.
+            bool: Retorna False em caso de falha ao chamar a API.
+        """
+
+        numero_aleatorio = random.randint(1,100)
+        url = f"https://jsonplaceholder.typicode.com/todos/{numero_aleatorio}"
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            dados = response.json()
+            return dados["title"]
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao chamar API: {e}")
+            return False
+
+
     def executar(self):
         while True:
             print("""
                 1. Adicionar Tarefa
                 2. Listar Tarefas
                 3. Definir Status da Tarefa
-                4. Sair""")
+                4. Adicionar tarefa da API
+                5. Sair""")
             try:
                 escolha = int(input("Entrada: "))
                 if escolha == 1:
@@ -124,6 +152,12 @@ class GerenciadorDeTarefas:
                     except ValueError:
                         print("Informe apenas números!")
                 elif escolha == 4:
+                    api = self.adicionar_tarefa_da_api()
+                    if api == False:
+                        print("Falha ao adicionar nova tarefa.")
+                    else:
+                        self.adicionar_tarefa(api)
+                elif escolha == 5:
                     print("Saindo...")
                     break
                 else:
